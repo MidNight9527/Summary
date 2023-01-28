@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboottest2.mapper.HistoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.springboottest2.entity.History">
+    <!--@mbg.generated-->
+    <!--@Table history-->
+    <id column="historyId" jdbcType="INTEGER" property="historyid" />
+    <result column="historyUserId" jdbcType="INTEGER" property="historyuserid" />
+    <result column="originalText" jdbcType="VARCHAR" property="originaltext" />
+    <result column="summaryText" jdbcType="VARCHAR" property="summarytext" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    historyId, historyUserId, originalText, summaryText
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from history
+    where historyId = #{historyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from history
+    where historyId = #{historyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="historyId" keyProperty="historyid" parameterType="com.example.springboottest2.entity.History" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into history (historyUserId, originalText, summaryText
+      )
+    values (#{historyuserid,jdbcType=INTEGER}, #{originaltext,jdbcType=VARCHAR}, #{summarytext,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="historyId" keyProperty="historyid" parameterType="com.example.springboottest2.entity.History" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="historyuserid != null">
+        historyUserId,
+      </if>
+      <if test="originaltext != null">
+        originalText,
+      </if>
+      <if test="summarytext != null">
+        summaryText,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="historyuserid != null">
+        #{historyuserid,jdbcType=INTEGER},
+      </if>
+      <if test="originaltext != null">
+        #{originaltext,jdbcType=VARCHAR},
+      </if>
+      <if test="summarytext != null">
+        #{summarytext,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springboottest2.entity.History">
+    <!--@mbg.generated-->
+    update history
+    <set>
+      <if test="historyuserid != null">
+        historyUserId = #{historyuserid,jdbcType=INTEGER},
+      </if>
+      <if test="originaltext != null">
+        originalText = #{originaltext,jdbcType=VARCHAR},
+      </if>
+      <if test="summarytext != null">
+        summaryText = #{summarytext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where historyId = #{historyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springboottest2.entity.History">
+    <!--@mbg.generated-->
+    update history
+    set historyUserId = #{historyuserid,jdbcType=INTEGER},
+      originalText = #{originaltext,jdbcType=VARCHAR},
+      summaryText = #{summarytext,jdbcType=VARCHAR}
+    where historyId = #{historyid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List" />
+        from history
+        <where>
+            <if test="historyid != null">
+                and historyId=#{historyid,jdbcType=INTEGER}
+            </if>
+            <if test="historyuserid != null">
+                and historyUserId=#{historyuserid,jdbcType=INTEGER}
+            </if>
+            <if test="originaltext != null">
+                and originalText=#{originaltext,jdbcType=VARCHAR}
+            </if>
+            <if test="summarytext != null">
+                and summaryText=#{summarytext,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List" />
+        from history
+    </select>
+</mapper>
