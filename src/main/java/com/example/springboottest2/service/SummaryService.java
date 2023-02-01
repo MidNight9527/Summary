@@ -24,4 +24,8 @@ public class SummaryService {
         return text;
     }
 
+    public String AbsFromStr(String docContent, float inPercent){
+        return mSumMan.AbsFromStr(docContent, inPercent);
+    }
+
 }

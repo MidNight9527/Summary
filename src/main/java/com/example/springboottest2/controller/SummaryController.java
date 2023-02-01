@@ -17,10 +17,16 @@ public class SummaryController {
     @Resource
     SummaryService summaryService;
 
-    @ApiOperation(value = "通过文字获取摘要")
-    @PostMapping("/getabsfromstr")
+    @ApiOperation(value = "通过文字与用户ID获取摘要")
+    @PostMapping("/getabsfromstranduserid")
     public Resp getAbstractFromStr(String docContent, float inPercent, int userid) {
         return Resp.success(summaryService.AbsFromStr(docContent, inPercent, userid));
+    }
+
+    @ApiOperation(value = "通过文字获取摘要")
+    @PostMapping("/getabsfromstr")
+    public Resp getAbstractFromStr(String docContent, float inPercent) {
+        return Resp.success(summaryService.AbsFromStr(docContent, inPercent));
     }
 
 }

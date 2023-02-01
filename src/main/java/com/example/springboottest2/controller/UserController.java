@@ -74,6 +74,18 @@ public class UserController {
     @ApiOperation(value = "登录")
     @PostMapping("/login")
     public Resp selectByAll(String userName, String password) {
-        return userService.login(userName, password);
+        return Resp.success(userService.login(userName, password));
+    }
+
+    @PostMapping("/adminlogin")
+    @ApiOperation(value = "管理端登录")
+    public Resp adminLogin(String userName , String password){
+        return userService.adminLogin(userName,password);
+    }
+
+    @PostMapping("/getuserinfo")
+    @ApiOperation(value = "通过Token获取信息")
+    public Resp getUserInfo(String token){
+        return userService.getUserInfo(token);
     }
 }
