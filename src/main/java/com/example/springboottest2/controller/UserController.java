@@ -88,4 +88,10 @@ public class UserController {
     public Resp getUserInfo(String token){
         return userService.getUserInfo(token);
     }
+
+    @ApiOperation(value = "注册")
+    @PostMapping("/register")
+    public Resp register(@RequestBody User user) {
+        return userService.register(user);
+    }
 }

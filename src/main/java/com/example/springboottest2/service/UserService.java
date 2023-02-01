@@ -80,6 +80,19 @@ public class UserService {
             return Resp.fail();
         }
     }
+
+    public Resp register(User user) {
+        System.out.println(123);
+        String userName = user.getUsername();
+        User tempUser = new User();
+        tempUser.setUsername(userName);
+        if(selectByAll(tempUser).size() == 0){
+            insert(user);
+            return Resp.success();
+        }else{
+            return Resp.fail();
+        }
+    }
 }
 
 
