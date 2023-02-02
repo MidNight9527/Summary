@@ -73,7 +73,10 @@ public class HistoryController {
 
     @ApiOperation(value = "根据用户id拉取历史")
     @PostMapping("/selectByUserId")
-    public Resp selectByUserId(int userid) {
-        return Resp.success(historyService.selectByUserId(userid));
+    public Resp selectByUserId(int userid, @RequestParam Integer pageNum, @RequestParam Integer size) {
+        PageHelper.startPage(pageNum, size);
+        PageInfo pageInfo = new PageInfo(historyService.selectByUserId(userid));
+        pageInfo.getTotal();
+        return Resp.success(pageInfo);
     }
 }
