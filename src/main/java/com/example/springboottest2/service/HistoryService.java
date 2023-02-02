@@ -48,6 +48,12 @@ public class HistoryService {
     public List<History> selectAll() {
         return historyMapper.selectAll();
     }
+
+    public List<History> selectByUserId(int userid) {
+        History tempHistoty = new History();
+        tempHistoty.setHistoryuserid(userid);
+        return selectByAll(tempHistoty);
+    }
 }
 
 

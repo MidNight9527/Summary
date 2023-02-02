@@ -70,4 +70,10 @@ public class HistoryController {
     public Resp selectByAll(@RequestBody(required = false) History history) {
         return Resp.success(historyService.selectByAll(history));
     }
+
+    @ApiOperation(value = "根据用户id拉取历史")
+    @PostMapping("/selectByUserId")
+    public Resp selectByUserId(int userid) {
+        return Resp.success(historyService.selectByUserId(userid));
+    }
 }
