@@ -4,13 +4,11 @@ import com.example.springboottest2.entity.History;
 import com.example.springboottest2.service.HistoryService;
 import com.example.springboottest2.entity.http.Resp;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.List;
-import com.example.springboottest2.config.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * (history)表控制层
@@ -57,10 +55,11 @@ public class HistoryController {
     }
 
     @ApiOperation(value = "查看全部-分页")
-    @PostMapping("/pageSelectAll")
+    @GetMapping("/pageSelectAll")
     public Resp pageSelectAll(@RequestParam Integer pageNum, @RequestParam Integer size) {
         PageHelper.startPage(pageNum, size);
-        PageInfo pageInfo = new PageInfo(historyService.selectAll());
+        List<History> list = historyService.selectAll();
+        PageInfo pageInfo = new PageInfo(list);
         pageInfo.getTotal();
         return Resp.success(pageInfo);
     }
